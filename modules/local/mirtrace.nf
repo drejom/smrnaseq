@@ -21,7 +21,7 @@ process MIRTRACE_RUN {
     def primer = meta.adapter ? "--adapter ${meta.adapter}" : ""
     def protocol = params.protocol == 'custom' ? '' : "--protocol $params.protocol"
     def java_mem = ''
-    def prefix = ""${meta.id}""
+    def prefix = "${meta.id}"
     if(task.memory){
         tmem = task.memory.toBytes()
         java_mem = "-Xms${tmem} -Xmx${tmem}"
@@ -31,7 +31,7 @@ process MIRTRACE_RUN {
     for i in $reads
     do
         path=\$(realpath \${i})
-        prefix=${prefix}
+        prefix=$prefix
         echo \$path","\$prefix
     done > mirtrace_config
 
